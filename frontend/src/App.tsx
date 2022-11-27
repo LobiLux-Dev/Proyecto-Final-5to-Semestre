@@ -1,6 +1,7 @@
 import './App.css'
 import { useState } from 'react'
 import { FaReact } from 'react-icons/fa'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Container, Nav, Navbar } from 'react-bootstrap'
 
 const App = () => {
@@ -19,7 +20,7 @@ const App = () => {
   const handleToggle = () => setExpanded(!expanded)
 
   return (
-    <>
+    <BrowserRouter>
       <header>
         <Navbar expand='sm'>
           <Container>
@@ -51,7 +52,17 @@ const App = () => {
           </Container>
         </Navbar>
       </header>
-      <main></main>
+      <main>
+        <Container>
+          <Routes>
+            <Route index element={<h1>Home</h1>} />
+            <Route path='about' element={<h1>About Us</h1>} />
+            <Route path='books' element={<h1>Books</h1>} />
+            <Route path='contact' element={<h1>Contact Us</h1>} />
+            <Route path='*' element={<h1>Page Not Found</h1>} />
+          </Routes>
+        </Container>
+      </main>
       <footer>
         <div>
           <h5>
@@ -64,7 +75,7 @@ const App = () => {
           </ul>
         </div>
       </footer>
-    </>
+    </BrowserRouter>
   )
 }
 

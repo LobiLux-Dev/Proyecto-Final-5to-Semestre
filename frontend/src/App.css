@@ -87,6 +87,11 @@ header
   color: #61dafb;
 }
 
+/* Main */
+main {
+  min-height: calc(100vh - 150px - 60px);
+}
+
 /* Footer */
 footer {
   color: #fff;
