@@ -32,7 +32,9 @@ const Contact = () => {
   useEffect(() => {
     document.title = 'B-LOQ - Contact Us'
 
-    setDisabled(!validName || !validEmail || !validPhone || !validIssue || !validMessage)
+    setDisabled(
+      !validName || !validEmail || !validPhone || !validIssue || !validMessage
+    )
   }, [validName, validEmail, validPhone, validIssue, validMessage])
 
   const handleName = (event: any) => {
