@@ -5,21 +5,25 @@ import { Button, Container, Form } from 'react-bootstrap'
 const Contact = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [issue, setIssue] = useState('')
   const [message, setMessage] = useState('')
 
   const [touchName, setTouchName] = useState(false)
   const [touchEmail, setTouchEmail] = useState(false)
+  const [touchPhone, setTouchPhone] = useState(false)
   const [touchIssue, setTouchIssue] = useState(false)
   const [touchMessage, setTouchMessage] = useState(false)
 
   const [changeName, setChangeName] = useState(false)
   const [changeEmail, setChangeEmail] = useState(false)
+  const [changePhone, setChangePhone] = useState(false)
   const [changeIssue, setChangeIssue] = useState(false)
   const [changeMessage, setChangeMessage] = useState(false)
 
   const [validName, setValidName] = useState(false)
   const [validEmail, setValidEmail] = useState(false)
+  const [validPhone, setValidPhone] = useState(true)
   const [validIssue, setValidIssue] = useState(false)
   const [validMessage, setValidMessage] = useState(false)
 
@@ -55,6 +59,17 @@ const Contact = () => {
     )
   }
 
+  const handlePhone = (event: any) => {
+    const newPhone = event.target.value
+
+    setPhone(newPhone)
+    setChangePhone(true)
+    setValidPhone(
+      (!!newPhone && /^\d{10}$/.test(newPhone) && touchPhone && changePhone) ||
+        !newPhone
+    )
+  }
+
   const handleIssue = (event: any) => {
     const newIssue = event.target.value
 
@@ -62,6 +77,7 @@ const Contact = () => {
     setChangeIssue(true)
     setValidIssue(newIssue.length >= 5 && touchIssue && changeIssue)
   }
+
   const handleMessage = (event: any) => {
     const newMessage = event.target.value
 
@@ -72,6 +88,7 @@ const Contact = () => {
 
   const handleTouchName = () => setTouchName(true)
   const handleTouchEmail = () => setTouchEmail(true)
+  const handleTouchPhone = () => setTouchPhone(true)
   const handleTouchIssue = () => setTouchIssue(true)
   const handleTouchMessage = () => setTouchMessage(true)
 
@@ -92,7 +109,7 @@ const Contact = () => {
             onFocus={handleTouchName}
             title='Introduce tu Nombre'
             placeholder='Introduce tu Nombre'
-            isInvalid={!name && touchName && changeName}
+            isInvalid={!name && touchName && changeName && !validName}
           />
           <Form.Control.Feedback type='invalid'>
             Este campo es obligatorio
@@ -111,7 +128,7 @@ const Contact = () => {
             onFocus={handleTouchEmail}
             title='Introduce tu Email'
             placeholder='Introduce tu Email'
-            isInvalid={!email && touchEmail && changeEmail}
+            isInvalid={!email && touchEmail && changeEmail && !validEmail}
           />
           <Form.Control.Feedback type='invalid'>
             Este campo es obligatorio y debe ser un email válido
@@ -122,9 +139,22 @@ const Contact = () => {
           <Form.Control
             type='tel'
             maxLength={10}
+            onChange={handlePhone}
+            onFocus={handleTouchPhone}
             title='Introduce tu Teléfono'
+            isValid={validPhone && !!phone}
             placeholder='Introduce tu Teléfono'
+            isInvalid={
+              !!phone &&
+              touchPhone &&
+              changePhone &&
+              !validPhone &&
+              !/^\d+$/.test(phone)
+            }
           />
+          <Form.Control.Feedback type='invalid'>
+            Introduce un teléfono válido
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId='issue'>
           <Form.Label>
@@ -138,7 +168,7 @@ const Contact = () => {
             onChange={handleIssue}
             onFocus={handleTouchIssue}
             title='Introduce el Asunto'
-            isInvalid={!issue && touchIssue && changeIssue}
+            isInvalid={!issue && touchIssue && changeIssue && !validIssue}
             placeholder='Introduce el Asunto (5 caracteres minimo)'
           />
           <Form.Control.Feedback type='invalid'>
@@ -157,7 +187,7 @@ const Contact = () => {
             onChange={handleMessage}
             onFocus={handleTouchMessage}
             title='Introduce tu Mensaje'
-            isInvalid={!message && touchMessage && changeMessage}
+            isInvalid={!message && touchMessage && changeMessage && !validMessage}
             placeholder='Introduce tu Mensaje (20 caracteres minimo)'
           />
           <Form.Control.Feedback type='invalid'>
