@@ -1,3 +1,93 @@
+/* Header */
+header {
+  height: 60px;
+  background: #20232a;
+}
+
+header > nav.navbar.navbar-expand-sm.navbar-light {
+  padding: 0;
+}
+
+header > nav.navbar.navbar-expand-sm.navbar-light > div.container {
+  background: #20232a;
+}
+
+header
+  > nav.navbar.navbar-expand-sm.navbar-light
+  > div.container
+  > span.navbar-brand {
+  padding-top: 10px;
+}
+
+header
+  > nav.navbar.navbar-expand-sm.navbar-light
+  > div.container
+  > span.navbar-brand
+  > a {
+  color: #61dafb;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+header
+  > nav.navbar.navbar-expand-sm.navbar-light
+  > div.container
+  > span.navbar-brand
+  > a:focus {
+  color: #fff;
+}
+
+header
+  > nav.navbar.navbar-expand-sm.navbar-light
+  > div.container
+  > span.navbar-brand
+  > a:hover {
+  color: #61dafb;
+}
+
+header
+  > nav.navbar.navbar-expand-sm.navbar-light
+  > div.container
+  > span.navbar-brand
+  > a
+  > img {
+  height: 40px;
+}
+
+header
+  > nav.navbar.navbar-expand-sm.navbar-light
+  > div.container
+  > div#header-nav
+  > ul.navbar-nav
+  > li.nav-item
+  > a.nav-link {
+  color: #fff;
+  padding: 18px;
+}
+
+header
+  > nav.navbar.navbar-expand-sm.navbar-light
+  > div.container
+  > div#header-nav
+  > ul.navbar-nav
+  > li.nav-item
+  > a.nav-link:focus {
+  color: #fff;
+  background: #373940;
+}
+
+header
+  > nav.navbar.navbar-expand-sm.navbar-light
+  > div.container
+  > div#header-nav
+  > ul.navbar-nav
+  > li.nav-item
+  > a.nav-link:hover {
+  color: #61dafb;
+}
+
+/* Footer */
 footer {
   color: #fff;
   padding: 1rem;
