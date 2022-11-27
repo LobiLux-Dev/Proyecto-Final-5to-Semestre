@@ -94,10 +94,40 @@ const Contact = () => {
   const handleTouchIssue = () => setTouchIssue(true)
   const handleTouchMessage = () => setTouchMessage(true)
 
+  const handleSubmit = (event: any) => {
+    event.preventDefault()
+
+    setName('')
+    setEmail('')
+    setPhone('')
+    setIssue('')
+    setMessage('')
+
+    setTouchName(false)
+    setTouchEmail(false)
+    setTouchPhone(false)
+    setTouchIssue(false)
+    setTouchMessage(false)
+
+    setChangeName(false)
+    setChangeEmail(false)
+    setChangePhone(false)
+    setChangeIssue(false)
+    setChangeMessage(false)
+
+    setValidName(false)
+    setValidEmail(false)
+    setValidPhone(true)
+    setValidIssue(false)
+    setValidMessage(false)
+
+    setDisabled(true)
+  }
+
   return (
     <Container className='my-4'>
       <h2 className='text-center mb-4'>Formulario de Contacto</h2>
-      <Form className='col-xl-4 col-lg-5 col-md-6 col-sm-8'>
+      <Form onSubmit={handleSubmit} className='col-xl-4 col-lg-5 col-md-6 col-sm-8'>
         <Form.Group controlId='name'>
           <Form.Label>
             Nombre <span>*</span>
@@ -105,6 +135,7 @@ const Contact = () => {
           <Form.Control
             required
             type='text'
+            value={name}
             minLength={3}
             isValid={validName}
             onChange={handleName}
@@ -125,6 +156,7 @@ const Contact = () => {
             required
             type='email'
             minLength={5}
+            value={email}
             isValid={validEmail}
             onChange={handleEmail}
             onFocus={handleTouchEmail}
@@ -140,6 +172,7 @@ const Contact = () => {
           <Form.Label>Teléfono</Form.Label>
           <Form.Control
             type='tel'
+            value={phone}
             maxLength={10}
             onChange={handlePhone}
             onFocus={handleTouchPhone}
@@ -166,6 +199,7 @@ const Contact = () => {
             required
             type='text'
             minLength={5}
+            value={issue}
             isValid={validIssue}
             onChange={handleIssue}
             onFocus={handleTouchIssue}
@@ -185,6 +219,7 @@ const Contact = () => {
             required
             as='textarea'
             minLength={20}
+            value={message}
             isValid={validMessage}
             onChange={handleMessage}
             onFocus={handleTouchMessage}
