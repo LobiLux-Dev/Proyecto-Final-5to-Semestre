@@ -44,7 +44,15 @@ const Contact = () => {
 
     setEmail(newEmail)
     setChangeEmail(true)
-    setValidEmail(!!newEmail && newEmail.length >= 5 && touchEmail && changeEmail)
+    setValidEmail(
+      !!newEmail &&
+        newEmail.length >= 5 &&
+        touchEmail &&
+        changeEmail &&
+        /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i.test(
+          newEmail
+        )
+    )
   }
 
   const handleIssue = (event: any) => {
@@ -78,6 +86,7 @@ const Contact = () => {
           <Form.Control
             required
             type='text'
+            minLength={3}
             isValid={validName}
             onChange={handleName}
             onFocus={handleTouchName}
@@ -96,6 +105,7 @@ const Contact = () => {
           <Form.Control
             required
             type='email'
+            minLength={5}
             isValid={validEmail}
             onChange={handleEmail}
             onFocus={handleTouchEmail}
