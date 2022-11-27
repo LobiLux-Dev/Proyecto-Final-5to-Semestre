@@ -1,7 +1,7 @@
 import './App.css'
 import { useState } from 'react'
 import { FaReact } from 'react-icons/fa'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import { Container, Nav, Navbar } from 'react-bootstrap'
 
 const App = () => {
@@ -25,27 +25,27 @@ const App = () => {
         <Navbar expand='sm'>
           <Container>
             <Navbar.Brand>
-              <Navbar.Brand href='/'>
+              <Link to='/'>
                 <img src={process.env.PUBLIC_URL + 'logo512.png'} alt='logo' /> B-LOQ
-              </Navbar.Brand>
+              </Link>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls='header-nav' onClick={handleToggle} />
             <Navbar.Collapse id='header-nav'>
               <Nav as='ul'>
                 <Nav.Item as='li'>
-                  <Nav.Link href='/about' onClick={handleFocus}>
+                  <Link to='/about' className='nav-link' onClick={handleFocus}>
                     Sobre Nosotros
-                  </Nav.Link>
+                  </Link>
                 </Nav.Item>
                 <Nav.Item as='li'>
-                  <Nav.Link href='/books' onClick={handleFocus}>
+                  <Link to='/books' className='nav-link' onClick={handleFocus}>
                     Libros
-                  </Nav.Link>
+                  </Link>
                 </Nav.Item>
                 <Nav.Item as='li'>
-                  <Nav.Link href='/contact' onClick={handleFocus}>
+                  <Link to='/contact' className='nav-link' onClick={handleFocus}>
                     Contacto
-                  </Nav.Link>
+                  </Link>
                 </Nav.Item>
               </Nav>
             </Navbar.Collapse>
