@@ -18,13 +18,40 @@ const Contact = () => {
   const [changeIssue, setChangeIssue] = useState(false)
   const [changeMessage, setChangeMessage] = useState(false)
 
+  const [validName, setValidName] = useState(false)
+  const [validEmail, setValidEmail] = useState(false)
+  const [validIssue, setValidIssue] = useState(false)
+  const [validMessage, setValidMessage] = useState(false)
+
   const [disabled, setDisabled] = useState(true)
 
   useEffect(() => {
     document.title = 'B-LOQ - Contact Us'
 
-    setDisabled(!name || !email || !issue || !message)
-  }, [name, email, issue, message])
+    setValidName(name.length >= 3 && touchName && changeName)
+    setValidEmail(!!email && email.length >= 5 && touchEmail && changeEmail)
+    setValidIssue(issue.length >= 5 && touchIssue && changeIssue)
+    setValidMessage(message.length >= 20 && touchMessage && changeMessage)
+
+    setDisabled(!validName || !validEmail || !validIssue || !validMessage)
+  }, [
+    name,
+    email,
+    issue,
+    message,
+    touchName,
+    touchEmail,
+    touchIssue,
+    touchMessage,
+    changeName,
+    changeEmail,
+    changeIssue,
+    changeMessage,
+    validName,
+    validEmail,
+    validIssue,
+    validMessage,
+  ])
 
   const handleName = (event: any) => {
     setName(event.target.value)
@@ -61,12 +88,12 @@ const Contact = () => {
           <Form.Control
             required
             type='text'
+            isValid={validName}
             onChange={handleName}
             onFocus={handleTouchName}
             title='Introduce tu Nombre'
             placeholder='Introduce tu Nombre'
             isInvalid={!name && touchName && changeName}
-            isValid={name.length >= 3 && touchName && changeName}
           />
           <Form.Control.Feedback type='invalid'>
             Este campo es obligatorio
@@ -79,12 +106,12 @@ const Contact = () => {
           <Form.Control
             required
             type='email'
+            isValid={validEmail}
             onChange={handleEmail}
             onFocus={handleTouchEmail}
             title='Introduce tu Email'
             placeholder='Introduce tu Email'
             isInvalid={!email && touchEmail && changeEmail}
-            isValid={!!email && email.length >= 5 && touchEmail && changeEmail}
           />
           <Form.Control.Feedback type='invalid'>
             Este campo es obligatorio y debe ser un email válido
@@ -107,12 +134,12 @@ const Contact = () => {
             required
             type='text'
             minLength={5}
+            isValid={validIssue}
             onChange={handleIssue}
             onFocus={handleTouchIssue}
             title='Introduce el Asunto'
             isInvalid={!issue && touchIssue && changeIssue}
             placeholder='Introduce el Asunto (5 caracteres minimo)'
-            isValid={issue.length >= 5 && touchIssue && changeIssue}
           />
           <Form.Control.Feedback type='invalid'>
             Este campo es obligatorio
@@ -126,12 +153,12 @@ const Contact = () => {
             required
             as='textarea'
             minLength={20}
+            isValid={validMessage}
             onChange={handleMessage}
             onFocus={handleTouchMessage}
             title='Introduce tu Mensaje'
             isInvalid={!message && touchMessage && changeMessage}
             placeholder='Introduce tu Mensaje (20 caracteres minimo)'
-            isValid={message.length >= 20 && touchMessage && changeMessage}
           />
           <Form.Control.Feedback type='invalid'>
             Este campo es obligatorio
