@@ -1,0 +1,23 @@
+footer {
+  color: #fff;
+  padding: 1rem;
+  height: 150px;
+  background: #20232a;
+}
+
+footer > div {
+  text-align: center;
+  margin-top: 5px;
+}
+
+footer > div > h5 > svg#react-icon {
+  bottom: 3px;
+  color: #61dafb;
+  position: relative;
+}
+
+footer > div > ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
