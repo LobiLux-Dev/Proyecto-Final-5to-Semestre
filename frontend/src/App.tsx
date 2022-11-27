@@ -1,80 +1,15 @@
-import './App.css'
-import { useState } from 'react'
-import { FaReact } from 'react-icons/fa'
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
-import { Container, Nav, Navbar } from 'react-bootstrap'
+import { BrowserRouter } from 'react-router-dom'
+
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Main from './components/Main'
 
 const App = () => {
-  const [expanded, setExpanded] = useState(false)
-
-  const handleFocus = (event: any) =>
-    setTimeout(() => {
-      if (expanded) {
-        ;(document.querySelector('button.navbar-toggler') as HTMLElement).click()
-        setExpanded(false)
-      }
-
-      event.target.blur()
-    }, 250)
-
-  const handleToggle = () => setExpanded(!expanded)
-
   return (
     <BrowserRouter>
-      <header>
-        <Navbar expand='sm'>
-          <Container>
-            <Navbar.Brand>
-              <Link to='/'>
-                <img src={process.env.PUBLIC_URL + 'logo512.png'} alt='logo' /> B-LOQ
-              </Link>
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls='header-nav' onClick={handleToggle} />
-            <Navbar.Collapse id='header-nav'>
-              <Nav as='ul'>
-                <Nav.Item as='li'>
-                  <Link to='/about' className='nav-link' onClick={handleFocus}>
-                    Sobre Nosotros
-                  </Link>
-                </Nav.Item>
-                <Nav.Item as='li'>
-                  <Link to='/books' className='nav-link' onClick={handleFocus}>
-                    Libros
-                  </Link>
-                </Nav.Item>
-                <Nav.Item as='li'>
-                  <Link to='/contact' className='nav-link' onClick={handleFocus}>
-                    Contacto
-                  </Link>
-                </Nav.Item>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      </header>
-      <main>
-        <Container>
-          <Routes>
-            <Route index element={<h1>Home</h1>} />
-            <Route path='about' element={<h1>About Us</h1>} />
-            <Route path='books' element={<h1>Books</h1>} />
-            <Route path='contact' element={<h1>Contact Us</h1>} />
-            <Route path='*' element={<h1>Page Not Found</h1>} />
-          </Routes>
-        </Container>
-      </main>
-      <footer>
-        <div>
-          <h5>
-            Made with <FaReact title='React JS/TS' id='react-icon' /> by:
-          </h5>
-          <ul>
-            <li>Omar Reynoso Arellano</li>
-            <li>José Luis Sánchez Vázquez</li>
-            <li>Quetzalli Marel Hernández Alba</li>
-          </ul>
-        </div>
-      </footer>
+      <Header />
+      <Main />
+      <Footer />
     </BrowserRouter>
   )
 }
