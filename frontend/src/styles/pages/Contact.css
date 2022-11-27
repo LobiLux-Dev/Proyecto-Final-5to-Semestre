@@ -1,0 +1,26 @@
+form {
+  margin-bottom: 1rem;
+  margin: 0 auto;
+}
+
+form > div {
+  margin-bottom: 1rem;
+}
+
+form > div > label > span {
+  color: #f00;
+}
+
+form > div > textarea {
+  resize: none;
+  height: 100px;
+}
+
+form > button.btn {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+form > div > span {
+  color: #f00;
+}
