@@ -7,6 +7,17 @@ const Contact = () => {
   const [email, setEmail] = useState('')
   const [issue, setIssue] = useState('')
   const [message, setMessage] = useState('')
+
+  const [touchName, setTouchName] = useState(false)
+  const [touchEmail, setTouchEmail] = useState(false)
+  const [touchIssue, setTouchIssue] = useState(false)
+  const [touchMessage, setTouchMessage] = useState(false)
+
+  const [changeName, setChangeName] = useState(false)
+  const [changeEmail, setChangeEmail] = useState(false)
+  const [changeIssue, setChangeIssue] = useState(false)
+  const [changeMessage, setChangeMessage] = useState(false)
+
   const [disabled, setDisabled] = useState(true)
 
   useEffect(() => {
@@ -15,10 +26,29 @@ const Contact = () => {
     setDisabled(!name || !email || !issue || !message)
   }, [name, email, issue, message])
 
-  const handleName = (event: any) => setName(event.target.value)
-  const handleEmail = (event: any) => setEmail(event.target.value)
-  const handleIssue = (event: any) => setIssue(event.target.value)
-  const handleMessage = (event: any) => setMessage(event.target.value)
+  const handleName = (event: any) => {
+    setName(event.target.value)
+    setChangeName(true)
+  }
+
+  const handleEmail = (event: any) => {
+    setEmail(event.target.value)
+    setChangeEmail(true)
+  }
+
+  const handleIssue = (event: any) => {
+    setIssue(event.target.value)
+    setChangeIssue(true)
+  }
+  const handleMessage = (event: any) => {
+    setMessage(event.target.value)
+    setChangeMessage(true)
+  }
+
+  const handleTouchName = () => setTouchName(true)
+  const handleTouchEmail = () => setTouchEmail(true)
+  const handleTouchIssue = () => setTouchIssue(true)
+  const handleTouchMessage = () => setTouchMessage(true)
 
   return (
     <Container className='my-4'>
@@ -32,9 +62,15 @@ const Contact = () => {
             required
             type='text'
             onChange={handleName}
+            onFocus={handleTouchName}
             title='Introduce tu Nombre'
             placeholder='Introduce tu Nombre'
+            isInvalid={!name && touchName && changeName}
+            isValid={name.length >= 3 && touchName && changeName}
           />
+          <Form.Control.Feedback type='invalid'>
+            Este campo es obligatorio
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId='email'>
           <Form.Label>
@@ -44,9 +80,15 @@ const Contact = () => {
             required
             type='email'
             onChange={handleEmail}
+            onFocus={handleTouchEmail}
             title='Introduce tu Email'
             placeholder='Introduce tu Email'
+            isInvalid={!email && touchEmail && changeEmail}
+            isValid={!!email && email.length >= 5 && touchEmail && changeEmail}
           />
+          <Form.Control.Feedback type='invalid'>
+            Este campo es obligatorio y debe ser un email válido
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId='phone'>
           <Form.Label>Teléfono</Form.Label>
@@ -66,9 +108,15 @@ const Contact = () => {
             type='text'
             minLength={5}
             onChange={handleIssue}
+            onFocus={handleTouchIssue}
             title='Introduce el Asunto'
+            isInvalid={!issue && touchIssue && changeIssue}
             placeholder='Introduce el Asunto (5 caracteres minimo)'
+            isValid={issue.length >= 5 && touchIssue && changeIssue}
           />
+          <Form.Control.Feedback type='invalid'>
+            Este campo es obligatorio
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId='message'>
           <Form.Label>
@@ -79,9 +127,15 @@ const Contact = () => {
             as='textarea'
             minLength={20}
             onChange={handleMessage}
+            onFocus={handleTouchMessage}
             title='Introduce tu Mensaje'
+            isInvalid={!message && touchMessage && changeMessage}
             placeholder='Introduce tu Mensaje (20 caracteres minimo)'
+            isValid={message.length >= 20 && touchMessage && changeMessage}
           />
+          <Form.Control.Feedback type='invalid'>
+            Este campo es obligatorio
+          </Form.Control.Feedback>
         </Form.Group>
         <Button variant='primary' type='submit' disabled={disabled}>
           Enviar
