@@ -1,5 +1,5 @@
-import '../styles/Footer.css'
 import { FaReact } from 'react-icons/fa'
+import '../styles/components/Footer.css'
 
 const Footer = () => {
   return (

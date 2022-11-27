@@ -1,4 +1,4 @@
-import '../styles/Main.css'
+import '../styles/components/Main.css'
 import { Container } from 'react-bootstrap'
 import { Route, Routes } from 'react-router-dom'
 
