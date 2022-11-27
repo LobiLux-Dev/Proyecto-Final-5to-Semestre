@@ -28,48 +28,38 @@ const Contact = () => {
   useEffect(() => {
     document.title = 'B-LOQ - Contact Us'
 
-    setValidName(name.length >= 3 && touchName && changeName)
-    setValidEmail(!!email && email.length >= 5 && touchEmail && changeEmail)
-    setValidIssue(issue.length >= 5 && touchIssue && changeIssue)
-    setValidMessage(message.length >= 20 && touchMessage && changeMessage)
-
     setDisabled(!validName || !validEmail || !validIssue || !validMessage)
-  }, [
-    name,
-    email,
-    issue,
-    message,
-    touchName,
-    touchEmail,
-    touchIssue,
-    touchMessage,
-    changeName,
-    changeEmail,
-    changeIssue,
-    changeMessage,
-    validName,
-    validEmail,
-    validIssue,
-    validMessage,
-  ])
+  }, [validName, validEmail, validIssue, validMessage])
 
   const handleName = (event: any) => {
-    setName(event.target.value)
+    const newName = event.target.value
+
+    setName(newName)
     setChangeName(true)
+    setValidName(newName.length >= 3 && touchName && changeName)
   }
 
   const handleEmail = (event: any) => {
-    setEmail(event.target.value)
+    const newEmail = event.target.value
+
+    setEmail(newEmail)
     setChangeEmail(true)
+    setValidEmail(!!newEmail && newEmail.length >= 5 && touchEmail && changeEmail)
   }
 
   const handleIssue = (event: any) => {
-    setIssue(event.target.value)
+    const newIssue = event.target.value
+
+    setIssue(newIssue)
     setChangeIssue(true)
+    setValidIssue(newIssue.length >= 5 && touchIssue && changeIssue)
   }
   const handleMessage = (event: any) => {
-    setMessage(event.target.value)
+    const newMessage = event.target.value
+
     setChangeMessage(true)
+    setMessage(newMessage)
+    setValidMessage(newMessage.length >= 20 && touchMessage && changeMessage)
   }
 
   const handleTouchName = () => setTouchName(true)
