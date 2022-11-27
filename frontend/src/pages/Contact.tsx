@@ -1,11 +1,24 @@
 import '../styles/pages/Contact.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
 
 const Contact = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [issue, setIssue] = useState('')
+  const [message, setMessage] = useState('')
+  const [disabled, setDisabled] = useState(true)
+
   useEffect(() => {
     document.title = 'B-LOQ - Contact Us'
-  })
+
+    setDisabled(!name || !email || !issue || !message)
+  }, [name, email, issue, message])
+
+  const handleName = (event: any) => setName(event.target.value)
+  const handleEmail = (event: any) => setEmail(event.target.value)
+  const handleIssue = (event: any) => setIssue(event.target.value)
+  const handleMessage = (event: any) => setMessage(event.target.value)
 
   return (
     <Container className='my-4'>
@@ -18,6 +31,7 @@ const Contact = () => {
           <Form.Control
             required
             type='text'
+            onChange={handleName}
             title='Introduce tu Nombre'
             placeholder='Introduce tu Nombre'
           />
@@ -29,6 +43,7 @@ const Contact = () => {
           <Form.Control
             required
             type='email'
+            onChange={handleEmail}
             title='Introduce tu Email'
             placeholder='Introduce tu Email'
           />
@@ -50,6 +65,7 @@ const Contact = () => {
             required
             type='text'
             minLength={5}
+            onChange={handleIssue}
             title='Introduce el Asunto'
             placeholder='Introduce el Asunto (5 caracteres minimo)'
           />
@@ -62,11 +78,12 @@ const Contact = () => {
             required
             as='textarea'
             minLength={20}
+            onChange={handleMessage}
             title='Introduce tu Mensaje'
             placeholder='Introduce tu Mensaje (20 caracteres minimo)'
           />
         </Form.Group>
-        <Button variant='primary' type='submit'>
+        <Button variant='primary' type='submit' disabled={disabled}>
           Enviar
         </Button>
         <div>
