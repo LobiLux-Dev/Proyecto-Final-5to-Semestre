@@ -23,7 +23,7 @@ const Header = () => {
       <Navbar expand='sm'>
         <Container>
           <Navbar.Brand>
-            <Link to='/'>
+            <Link to='/' onClick={handleFocus}>
               <img src={process.env.PUBLIC_URL + 'logo512.png'} alt='logo' /> B-LOQ
             </Link>
           </Navbar.Brand>
