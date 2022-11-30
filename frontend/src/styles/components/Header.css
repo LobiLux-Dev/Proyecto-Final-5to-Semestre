@@ -9,6 +9,7 @@ header > nav.navbar.navbar-expand-sm.navbar-light {
 
 header > nav.navbar.navbar-expand-sm.navbar-light > div.container {
   background: #20232a;
+  z-index: 9999;
 }
 
 header
@@ -57,7 +58,14 @@ header
 header
   > nav.navbar.navbar-expand-sm.navbar-light
   > div.container
-  > div#header-nav
+  > div.navbar-collapse {
+  z-index: 99999;
+}
+
+header
+  > nav.navbar.navbar-expand-sm.navbar-light
+  > div.container
+  > div.navbar-collapse
   > ul.navbar-nav
   > li.nav-item
   > a.nav-link {
@@ -68,7 +76,7 @@ header
 header
   > nav.navbar.navbar-expand-sm.navbar-light
   > div.container
-  > div#header-nav
+  > div.navbar-collapse
   > ul.navbar-nav
   > li.nav-item
   > a.nav-link:focus {
@@ -79,7 +87,7 @@ header
 header
   > nav.navbar.navbar-expand-sm.navbar-light
   > div.container
-  > div#header-nav
+  > div.navbar-collapse
   > ul.navbar-nav
   > li.nav-item
   > a.nav-link:hover {

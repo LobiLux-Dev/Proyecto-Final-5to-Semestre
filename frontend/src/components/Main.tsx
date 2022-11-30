@@ -1,5 +1,4 @@
 import '../styles/components/Main.css'
-import { Container } from 'react-bootstrap'
 import { Route, Routes } from 'react-router-dom'
 
 import Home from '../pages/Home'
@@ -11,15 +10,13 @@ import PageNotFound from '../pages/PageNotFound'
 const Main = () => {
   return (
     <main>
-      <Container>
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path='about' element={<About />} />
-          <Route path='books' element={<Books />} />
-          <Route path='contact' element={<Contact />} />
-          <Route path='*' element={<PageNotFound />} />
-        </Routes>
-      </Container>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path='about' element={<About />} />
+        <Route path='books' element={<Books />} />
+        <Route path='contact' element={<Contact />} />
+        <Route path='*' element={<PageNotFound />} />
+      </Routes>
     </main>
   )
 }

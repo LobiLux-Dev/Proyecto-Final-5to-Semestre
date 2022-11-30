@@ -28,7 +28,7 @@ const Header = () => {
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='header-nav' onClick={handleToggle} />
-          <Navbar.Collapse id='header-nav'>
+          <Navbar.Collapse>
             <Nav as='ul'>
               <Nav.Item as='li'>
                 <Link to='/about' className='nav-link' onClick={handleFocus}>
