@@ -19,9 +19,9 @@ const Contact = () => {
 
   const [name, setName] = useState(initialValues)
   const [email, setEmail] = useState(initialValues)
-  const [phone, setPhone] = useState(initialValues)
   const [issue, setIssue] = useState(initialValues)
   const [message, setMessage] = useState(initialValues)
+  const [phone, setPhone] = useState({ ...initialValues, valid: true })
 
   const [disabled, setDisabled] = useState(true)
 
@@ -107,6 +107,7 @@ const Contact = () => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault()
+
     const data = new FormData(event.target)
 
     try {
@@ -138,12 +139,14 @@ const Contact = () => {
     <Container className='my-4'>
       <h2 className='text-center mb-4'>Formulario de Contacto</h2>
       <Form onSubmit={handleSubmit} className='col-xl-4 col-lg-5 col-md-6 col-sm-8'>
+        <input type='hidden' name='_captcha' value='false' />
         <Form.Group controlId='name'>
           <Form.Label>
             Nombre <span>*</span>
           </Form.Label>
           <Form.Control
             required
+            name='name'
             type='text'
             minLength={3}
             value={name.value}
@@ -164,6 +167,7 @@ const Contact = () => {
           </Form.Label>
           <Form.Control
             required
+            name='email'
             type='email'
             minLength={5}
             value={email.value}
@@ -182,6 +186,7 @@ const Contact = () => {
           <Form.Label>Teléfono</Form.Label>
           <Form.Control
             type='tel'
+            name='phone'
             maxLength={10}
             value={phone.value}
             onChange={handlePhone}
@@ -208,6 +213,7 @@ const Contact = () => {
           <Form.Control
             required
             type='text'
+            name='issue'
             minLength={5}
             value={issue.value}
             isValid={issue.valid}
@@ -229,6 +235,7 @@ const Contact = () => {
             required
             as='textarea'
             minLength={20}
+            name='message'
             value={message.value}
             isValid={message.valid}
             onChange={handleMessage}
