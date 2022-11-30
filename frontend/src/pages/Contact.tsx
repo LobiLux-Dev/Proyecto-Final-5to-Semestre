@@ -3,30 +3,19 @@ import '../styles/pages/Contact.css'
 import { useEffect, useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
 
+const initialValues = {
+  value: '',
+  touch: false,
+  change: false,
+  valid: false,
+}
+
 const Contact = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [issue, setIssue] = useState('')
-  const [message, setMessage] = useState('')
-
-  const [touchName, setTouchName] = useState(false)
-  const [touchEmail, setTouchEmail] = useState(false)
-  const [touchPhone, setTouchPhone] = useState(false)
-  const [touchIssue, setTouchIssue] = useState(false)
-  const [touchMessage, setTouchMessage] = useState(false)
-
-  const [changeName, setChangeName] = useState(false)
-  const [changeEmail, setChangeEmail] = useState(false)
-  const [changePhone, setChangePhone] = useState(false)
-  const [changeIssue, setChangeIssue] = useState(false)
-  const [changeMessage, setChangeMessage] = useState(false)
-
-  const [validName, setValidName] = useState(false)
-  const [validEmail, setValidEmail] = useState(false)
-  const [validPhone, setValidPhone] = useState(true)
-  const [validIssue, setValidIssue] = useState(false)
-  const [validMessage, setValidMessage] = useState(false)
+  const [name, setName] = useState(initialValues)
+  const [email, setEmail] = useState(initialValues)
+  const [phone, setPhone] = useState(initialValues)
+  const [issue, setIssue] = useState(initialValues)
+  const [message, setMessage] = useState(initialValues)
 
   const [disabled, setDisabled] = useState(true)
 
@@ -34,66 +23,79 @@ const Contact = () => {
     document.title = 'B-LOQ - Contact Us'
 
     setDisabled(
-      !validName || !validEmail || !validPhone || !validIssue || !validMessage
+      !name.valid || !email.valid || !phone.valid || !issue.valid || !message.valid
     )
-  }, [validName, validEmail, validPhone, validIssue, validMessage])
+  }, [name.valid, email.valid, phone.valid, issue.valid, message.valid])
 
   const handleName = (event: any) => {
     const newName = event.target.value
 
-    setName(newName)
-    setChangeName(true)
-    setValidName(newName.length >= 3 && touchName && changeName)
+    setName({
+      ...name,
+      value: newName,
+      change: true,
+      valid: newName.length >= 3 && name.touch && name.change,
+    })
   }
 
   const handleEmail = (event: any) => {
     const newEmail = event.target.value
 
-    setEmail(newEmail)
-    setChangeEmail(true)
-    setValidEmail(
-      !!newEmail &&
+    setEmail({
+      ...email,
+      value: newEmail,
+      change: true,
+      valid:
+        !!newEmail &&
         newEmail.length >= 5 &&
-        touchEmail &&
-        changeEmail &&
+        email.touch &&
+        email.change &&
         /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i.test(
           newEmail
-        )
-    )
+        ),
+    })
   }
 
   const handlePhone = (event: any) => {
     const newPhone = event.target.value
 
-    setPhone(newPhone)
-    setChangePhone(true)
-    setValidPhone(
-      (!!newPhone && /^\d{10}$/.test(newPhone) && touchPhone && changePhone) ||
-        !newPhone
-    )
+    setPhone({
+      ...phone,
+      value: newPhone,
+      change: true,
+      valid:
+        (!!newPhone && /^\d{10}$/.test(newPhone) && phone.touch && phone.change) ||
+        !newPhone,
+    })
   }
 
   const handleIssue = (event: any) => {
     const newIssue = event.target.value
 
-    setIssue(newIssue)
-    setChangeIssue(true)
-    setValidIssue(newIssue.length >= 5 && touchIssue && changeIssue)
+    setIssue({
+      ...issue,
+      value: newIssue,
+      change: true,
+      valid: newIssue.length >= 5 && issue.touch && issue.change,
+    })
   }
 
   const handleMessage = (event: any) => {
     const newMessage = event.target.value
 
-    setChangeMessage(true)
-    setMessage(newMessage)
-    setValidMessage(newMessage.length >= 20 && touchMessage && changeMessage)
+    setMessage({
+      ...message,
+      value: newMessage,
+      change: true,
+      valid: newMessage.length >= 20 && message.touch && message.change,
+    })
   }
 
-  const handleTouchName = () => setTouchName(true)
-  const handleTouchEmail = () => setTouchEmail(true)
-  const handleTouchPhone = () => setTouchPhone(true)
-  const handleTouchIssue = () => setTouchIssue(true)
-  const handleTouchMessage = () => setTouchMessage(true)
+  const handleTouchName = () => setName({ ...name, touch: true })
+  const handleTouchEmail = () => setEmail({ ...email, touch: true })
+  const handleTouchPhone = () => setPhone({ ...phone, touch: true })
+  const handleTouchIssue = () => setIssue({ ...issue, touch: true })
+  const handleTouchMessage = () => setMessage({ ...message, touch: true })
 
   const handleSubmit = async (event: any) => {
     event.preventDefault()
@@ -102,29 +104,11 @@ const Contact = () => {
     try {
       await axios.post('https://formsubmit.co/B-LOQ123@proton.me', data)
 
-      setName('')
-      setEmail('')
-      setPhone('')
-      setIssue('')
-      setMessage('')
-
-      setTouchName(false)
-      setTouchEmail(false)
-      setTouchPhone(false)
-      setTouchIssue(false)
-      setTouchMessage(false)
-
-      setChangeName(false)
-      setChangeEmail(false)
-      setChangePhone(false)
-      setChangeIssue(false)
-      setChangeMessage(false)
-
-      setValidName(false)
-      setValidEmail(false)
-      setValidPhone(true)
-      setValidIssue(false)
-      setValidMessage(false)
+      setName({ value: '', touch: false, change: false, valid: false })
+      setEmail({ value: '', touch: false, change: false, valid: false })
+      setPhone({ value: '', touch: false, change: false, valid: true })
+      setIssue({ value: '', touch: false, change: false, valid: false })
+      setMessage({ value: '', touch: false, change: false, valid: false })
 
       setDisabled(true)
     } catch (error) {
@@ -143,14 +127,14 @@ const Contact = () => {
           <Form.Control
             required
             type='text'
-            value={name}
             minLength={3}
-            isValid={validName}
+            value={name.value}
+            isValid={name.valid}
             onChange={handleName}
             onFocus={handleTouchName}
             title='Introduce tu Nombre'
             placeholder='Introduce tu Nombre'
-            isInvalid={!name && touchName && changeName && !validName}
+            isInvalid={!name.value && name.touch && name.change && !name.valid}
           />
           <Form.Control.Feedback type='invalid'>
             Este campo es obligatorio
@@ -164,13 +148,13 @@ const Contact = () => {
             required
             type='email'
             minLength={5}
-            value={email}
-            isValid={validEmail}
+            value={email.value}
+            isValid={email.valid}
             onChange={handleEmail}
             onFocus={handleTouchEmail}
             title='Introduce tu Email'
             placeholder='Introduce tu Email'
-            isInvalid={!email && touchEmail && changeEmail && !validEmail}
+            isInvalid={!email.value && email.touch && email.change && !email.valid}
           />
           <Form.Control.Feedback type='invalid'>
             Este campo es obligatorio y debe ser un email válido
@@ -180,19 +164,19 @@ const Contact = () => {
           <Form.Label>Teléfono</Form.Label>
           <Form.Control
             type='tel'
-            value={phone}
             maxLength={10}
+            value={phone.value}
             onChange={handlePhone}
             onFocus={handleTouchPhone}
             title='Introduce tu Teléfono'
-            isValid={validPhone && !!phone}
             placeholder='Introduce tu Teléfono'
+            isValid={phone.valid && !!phone.value}
             isInvalid={
-              !!phone &&
-              touchPhone &&
-              changePhone &&
-              !validPhone &&
-              !/^\d+$/.test(phone)
+              !!phone.value &&
+              phone.touch &&
+              phone.change &&
+              !phone.valid &&
+              !/^\d+$/.test(phone.value)
             }
           />
           <Form.Control.Feedback type='invalid'>
@@ -207,13 +191,13 @@ const Contact = () => {
             required
             type='text'
             minLength={5}
-            value={issue}
-            isValid={validIssue}
+            value={issue.value}
+            isValid={issue.valid}
             onChange={handleIssue}
             onFocus={handleTouchIssue}
             title='Introduce el Asunto'
             placeholder='Introduce el Asunto (5 caracteres minimo)'
-            isInvalid={!issue && touchIssue && changeIssue && !validIssue}
+            isInvalid={!issue.value && issue.touch && issue.change && !issue.valid}
           />
           <Form.Control.Feedback type='invalid'>
             Este campo es obligatorio
@@ -227,13 +211,15 @@ const Contact = () => {
             required
             as='textarea'
             minLength={20}
-            value={message}
-            isValid={validMessage}
+            value={message.value}
+            isValid={message.valid}
             onChange={handleMessage}
             onFocus={handleTouchMessage}
             title='Introduce tu Mensaje'
             placeholder='Introduce tu Mensaje (20 caracteres minimo)'
-            isInvalid={!message && touchMessage && changeMessage && !validMessage}
+            isInvalid={
+              !message.value && message.touch && message.change && !message.valid
+            }
           />
           <Form.Control.Feedback type='invalid'>
             Este campo es obligatorio
