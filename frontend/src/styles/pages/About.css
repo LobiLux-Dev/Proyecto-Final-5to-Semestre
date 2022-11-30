@@ -1,0 +1,7 @@
+video {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 50% 50%;
+  height: calc(100vh - 150px - 60px);
+}
