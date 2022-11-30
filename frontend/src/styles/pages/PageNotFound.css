@@ -1,0 +1,28 @@
+div.container#pagenotfound-container {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100vh - 150px - 60px);
+}
+
+div.container#pagenotfound-container > h1 {
+  color: #000;
+  font-size: 5rem;
+}
+
+div.container#pagenotfound-container > h2 {
+  color: #000;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+div.container#pagenotfound-container > p {
+  color: #000;
+}
+
+div.container#pagenotfound-container > p > a {
+  color: #61dafb;
+  text-decoration: none;
+}
