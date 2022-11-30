@@ -1,3 +1,4 @@
+import axios from 'axios'
 import '../styles/pages/Contact.css'
 import { useEffect, useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
@@ -94,34 +95,41 @@ const Contact = () => {
   const handleTouchIssue = () => setTouchIssue(true)
   const handleTouchMessage = () => setTouchMessage(true)
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault()
+    const data = new FormData(event.target)
 
-    setName('')
-    setEmail('')
-    setPhone('')
-    setIssue('')
-    setMessage('')
+    try {
+      await axios.post('https://formsubmit.co/B-LOQ123@proton.me', data)
 
-    setTouchName(false)
-    setTouchEmail(false)
-    setTouchPhone(false)
-    setTouchIssue(false)
-    setTouchMessage(false)
+      setName('')
+      setEmail('')
+      setPhone('')
+      setIssue('')
+      setMessage('')
 
-    setChangeName(false)
-    setChangeEmail(false)
-    setChangePhone(false)
-    setChangeIssue(false)
-    setChangeMessage(false)
+      setTouchName(false)
+      setTouchEmail(false)
+      setTouchPhone(false)
+      setTouchIssue(false)
+      setTouchMessage(false)
 
-    setValidName(false)
-    setValidEmail(false)
-    setValidPhone(true)
-    setValidIssue(false)
-    setValidMessage(false)
+      setChangeName(false)
+      setChangeEmail(false)
+      setChangePhone(false)
+      setChangeIssue(false)
+      setChangeMessage(false)
 
-    setDisabled(true)
+      setValidName(false)
+      setValidEmail(false)
+      setValidPhone(true)
+      setValidIssue(false)
+      setValidMessage(false)
+
+      setDisabled(true)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
