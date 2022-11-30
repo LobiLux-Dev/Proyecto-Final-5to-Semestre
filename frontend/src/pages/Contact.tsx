@@ -105,8 +105,8 @@ const Contact = () => {
       await axios.post('https://formsubmit.co/B-LOQ123@proton.me', data)
 
       setName({ value: '', touch: false, valid: false, change: false })
-      setEmail({ value: '', touch: false, valid: false, change: false })
       setPhone({ value: '', touch: false, valid: true, change: false })
+      setEmail({ value: '', touch: false, valid: false, change: false })
       setIssue({ value: '', touch: false, valid: false, change: false })
       setMessage({ value: '', touch: false, valid: false, change: false })
 
