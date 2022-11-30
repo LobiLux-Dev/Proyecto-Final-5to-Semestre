@@ -1,7 +1,7 @@
 import axios from 'axios'
 import '../styles/pages/Contact.css'
 import { useEffect, useState } from 'react'
-import { Button, Container, Form } from 'react-bootstrap'
+import { Button, Container, Form, Modal } from 'react-bootstrap'
 
 const initialValues = {
   value: '',
@@ -11,6 +11,12 @@ const initialValues = {
 }
 
 const Contact = () => {
+  const [modal, setModal] = useState({
+    body: '',
+    title: '',
+    show: false,
+  })
+
   const [name, setName] = useState(initialValues)
   const [email, setEmail] = useState(initialValues)
   const [phone, setPhone] = useState(initialValues)
@@ -18,6 +24,8 @@ const Contact = () => {
   const [message, setMessage] = useState(initialValues)
 
   const [disabled, setDisabled] = useState(true)
+
+  const handleModal = () => setModal({ ...modal, show: false })
 
   useEffect(() => {
     document.title = 'B-LOQ - Contact Us'
@@ -104,6 +112,12 @@ const Contact = () => {
     try {
       await axios.post('https://formsubmit.co/B-LOQ123@proton.me', data)
 
+      setModal({
+        show: true,
+        title: '✅ Éxito ✅',
+        body: 'Formulario enviado correctamente!',
+      })
+
       setName({ value: '', touch: false, valid: false, change: false })
       setPhone({ value: '', touch: false, valid: true, change: false })
       setEmail({ value: '', touch: false, valid: false, change: false })
@@ -111,8 +125,12 @@ const Contact = () => {
       setMessage({ value: '', touch: false, valid: false, change: false })
 
       setDisabled(true)
-    } catch (error) {
-      console.error(error)
+    } catch {
+      setModal({
+        show: true,
+        title: '❌ Error ❌',
+        body: 'Error al enviar el formulario!',
+      })
     }
   }
 
@@ -232,6 +250,17 @@ const Contact = () => {
           <span>*</span> los campos son obligatorios
         </div>
       </Form>
+      <Modal show={modal.show} onHide={handleModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>{modal.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modal.body}</Modal.Body>
+        <Modal.Footer>
+          <Button variant='secondary' onClick={handleModal}>
+            Aceptar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   )
 }
