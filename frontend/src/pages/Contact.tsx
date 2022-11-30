@@ -204,8 +204,8 @@ const Contact = () => {
             onChange={handleIssue}
             onFocus={handleTouchIssue}
             title='Introduce el Asunto'
-            isInvalid={!issue && touchIssue && changeIssue && !validIssue}
             placeholder='Introduce el Asunto (5 caracteres minimo)'
+            isInvalid={!issue && touchIssue && changeIssue && !validIssue}
           />
           <Form.Control.Feedback type='invalid'>
             Este campo es obligatorio
@@ -224,8 +224,8 @@ const Contact = () => {
             onChange={handleMessage}
             onFocus={handleTouchMessage}
             title='Introduce tu Mensaje'
-            isInvalid={!message && touchMessage && changeMessage && !validMessage}
             placeholder='Introduce tu Mensaje (20 caracteres minimo)'
+            isInvalid={!message && touchMessage && changeMessage && !validMessage}
           />
           <Form.Control.Feedback type='invalid'>
             Este campo es obligatorio
