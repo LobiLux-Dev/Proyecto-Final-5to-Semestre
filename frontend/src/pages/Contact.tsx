@@ -6,8 +6,8 @@ import { Button, Container, Form } from 'react-bootstrap'
 const initialValues = {
   value: '',
   touch: false,
-  change: false,
   valid: false,
+  change: false,
 }
 
 const Contact = () => {
@@ -32,8 +32,8 @@ const Contact = () => {
 
     setName({
       ...name,
-      value: newName,
       change: true,
+      value: newName,
       valid: newName.length >= 3 && name.touch && name.change,
     })
   }
@@ -43,8 +43,8 @@ const Contact = () => {
 
     setEmail({
       ...email,
-      value: newEmail,
       change: true,
+      value: newEmail,
       valid:
         !!newEmail &&
         newEmail.length >= 5 &&
@@ -61,8 +61,8 @@ const Contact = () => {
 
     setPhone({
       ...phone,
-      value: newPhone,
       change: true,
+      value: newPhone,
       valid:
         (!!newPhone && /^\d{10}$/.test(newPhone) && phone.touch && phone.change) ||
         !newPhone,
@@ -74,8 +74,8 @@ const Contact = () => {
 
     setIssue({
       ...issue,
-      value: newIssue,
       change: true,
+      value: newIssue,
       valid: newIssue.length >= 5 && issue.touch && issue.change,
     })
   }
@@ -85,8 +85,8 @@ const Contact = () => {
 
     setMessage({
       ...message,
-      value: newMessage,
       change: true,
+      value: newMessage,
       valid: newMessage.length >= 20 && message.touch && message.change,
     })
   }
