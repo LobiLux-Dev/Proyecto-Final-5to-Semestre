@@ -136,8 +136,8 @@ const Contact = () => {
   }
 
   return (
-    <Container className='my-4'>
-      <h2 className='text-center mb-4'>Formulario de Contacto</h2>
+    <Container id='contact-container'>
+      <h2>Formulario de Contacto</h2>
       <Form onSubmit={handleSubmit} className='col-xl-4 col-lg-5 col-md-6 col-sm-8'>
         <input type='hidden' name='_captcha' value='false' />
         <Form.Group controlId='name'>

@@ -1,26 +1,47 @@
-form {
-  margin-bottom: 1rem;
+div.container#contact-container {
+  margin: 1.5rem auto;
+}
+
+div.container#contact-container > h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+div.container#contact-container > form {
   margin: 0 auto;
-}
-
-form > div {
   margin-bottom: 1rem;
 }
 
-form > div > label > span {
+div.container#contact-container > form > div {
+  margin-bottom: 1rem;
+}
+
+div.container#contact-container
+  > form.col-xl-4.col-lg-5.col-md-6.col-sm-8
+  > div
+  > label.form-label
+  > span {
   color: #f00;
 }
 
-form > div > textarea {
+div.container#contact-container
+  > form.col-xl-4.col-lg-5.col-md-6.col-sm-8
+  > div
+  > textarea.form-control#message {
   resize: none;
   height: 100px;
 }
 
-form > button.btn {
+div.container#contact-container
+  > form.col-xl-4.col-lg-5.col-md-6.col-sm-8
+  > button.btn.btn-primary {
   width: 100%;
   margin: 1rem 0;
 }
 
-form > div > span {
+div.container#contact-container
+  > form.col-xl-4.col-lg-5.col-md-6.col-sm-8
+  > div
+  > span {
   color: #f00;
 }
