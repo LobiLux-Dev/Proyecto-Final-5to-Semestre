@@ -10,12 +10,14 @@ const initialValues = {
   change: false,
 }
 
+const modalValues = {
+  body: '',
+  title: '',
+  show: false,
+}
+
 const Contact = () => {
-  const [modal, setModal] = useState({
-    body: '',
-    title: '',
-    show: false,
-  })
+  const [modal, setModal] = useState(modalValues)
 
   const [name, setName] = useState(initialValues)
   const [email, setEmail] = useState(initialValues)
