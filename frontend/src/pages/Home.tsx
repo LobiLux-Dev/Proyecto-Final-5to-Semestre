@@ -11,7 +11,7 @@ const Home = () => {
     <Carousel fade>
       <Carousel.Item>
         <img
-          src={process.env.PUBLIC_URL + '/images/slider-1.jpg'}
+          src={process.env.PUBLIC_URL + '/static/images/slider-1.jpg'}
           alt='First slide'
         />
         <Carousel.Caption>
@@ -21,7 +21,7 @@ const Home = () => {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          src={process.env.PUBLIC_URL + '/images/slider-2.jpg'}
+          src={process.env.PUBLIC_URL + '/static/images/slider-2.jpg'}
           alt='Second slide'
         />
         <Carousel.Caption>
@@ -31,7 +31,7 @@ const Home = () => {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          src={process.env.PUBLIC_URL + '/images/slider-3.jpg'}
+          src={process.env.PUBLIC_URL + '/static/images/slider-3.jpg'}
           alt='Third slide'
         />
         <Carousel.Caption>
@@ -41,7 +41,7 @@ const Home = () => {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          src={process.env.PUBLIC_URL + '/images/slider-4.jpg'}
+          src={process.env.PUBLIC_URL + '/static/images/slider-4.jpg'}
           alt='Fourth slide'
         />
         <Carousel.Caption>
@@ -51,7 +51,7 @@ const Home = () => {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          src={process.env.PUBLIC_URL + '/images/slider-5.jpg'}
+          src={process.env.PUBLIC_URL + '/static/images/slider-5.jpg'}
           alt='Fifth slide'
         />
         <Carousel.Caption>

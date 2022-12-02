@@ -6,7 +6,14 @@ const About = () => {
     document.title = 'B-LOQ - Sobre Nosotros'
   })
 
-  return <video src={process.env.PUBLIC_URL + '/videos/about.mp4'} controls autoPlay muted></video>
+  return (
+    <video
+      src={process.env.PUBLIC_URL + '/static/videos/about.mp4'}
+      controls
+      autoPlay
+      muted
+    ></video>
+  )
 }
 
 export default About
