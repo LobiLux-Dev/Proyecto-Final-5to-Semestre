@@ -9,12 +9,12 @@ type BookType = {
   quantity: number
 }
 
-export const getBooks = async () => {
-  return await Book.findAll({ logging: false })
+export const getBooks = async (options?: any) => {
+  return await Book.findAll({ where: options, logging: false })
 }
 
-export const getBook = async (id: string) => {
-  return await Book.findByPk(id, { logging: false })
+export const getBook = async (options: any) => {
+  return await Book.findOne({ where: options, logging: false })
 }
 
 export const addBook = async ({
@@ -43,11 +43,4 @@ export const updateBook = async (
 
 export const deleteBook = async (id: string) => {
   await Book.destroy({ where: { id: id }, logging: false })
-}
-
-export const bookExists = async (isbn: string, title: string) => {
-  if (await Book.findOne({ where: { isbn }, logging: false }))
-    throw new Error('ISBN already exists')
-  if (await Book.findOne({ where: { title }, logging: false }))
-    throw new Error('Title already exists')
 }
