@@ -44,3 +44,10 @@ export const updateBook = async (
 export const deleteBook = async (id: string) => {
   await Book.destroy({ where: { id: id }, logging: false })
 }
+
+export const bookExists = async (isbn: string, title: string) => {
+  if (await Book.findOne({ where: { isbn }, logging: false }))
+    throw new Error('ISBN already exists')
+  if (await Book.findOne({ where: { title }, logging: false }))
+    throw new Error('Title already exists')
+}

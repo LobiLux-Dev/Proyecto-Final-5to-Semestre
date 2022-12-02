@@ -6,6 +6,7 @@ import {
   addBook,
   updateBook,
   deleteBook,
+  bookExists,
 } from '../controllers/books.controller'
 
 const router = Router()
@@ -39,6 +40,8 @@ router.post('/', async (req, res, next) => {
     if (!printingDate) throw new Error('Printing Date is required')
     if (!quantity || !parseInt(quantity)) throw new Error('Quantity is required')
 
+    await bookExists(isbn, title)
+
     await addBook({ isbn, author, title, editorial, printingDate, quantity })
     res.json({ status: 'Book saved' })
   } catch (error: any) {
@@ -56,6 +59,8 @@ router.put('/:id', async (req, res, next) => {
     if (!editorial) throw new Error('Editorial is required')
     if (!printingDate) throw new Error('Printing Date is required')
     if (!quantity || !parseInt(quantity)) throw new Error('Quantity is required')
+
+    await bookExists(isbn, title)
 
     await updateBook(req.params.id, {
       isbn,
