@@ -1,0 +1,65 @@
+div.container#books-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.5rem auto;
+}
+
+div.container#books-container > div.card {
+  width: 20rem;
+}
+
+div.container#books-container > div.card > div.card-header > img {
+  width: 100%;
+  height: 15rem;
+  display: block;
+  object-fit: cover;
+}
+
+div.container#books-container > div.card > div.card-body > div.card-title.h5 {
+  font-weight: 700;
+}
+
+div.container#books-container > div.card > div.card-footer > div.row > p.card-text {
+  flex: 1 0;
+  margin-bottom: 0.25rem;
+}
+
+div.container#books-container > div.card > div.card-footer > div.row > p:last-child {
+  text-align: right;
+}
+
+@media (max-width: 576px) {
+  div.container#books-container {
+    gap: 30px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  div.container#books-container {
+    gap: 25px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  div.container#books-container {
+    gap: 20px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  div.container#books-container {
+    gap: 15px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+  div.container#books-container {
+    gap: 10px;
+  }
+}
+
+@media (min-width: 1400px) {
+  div.container#books-container {
+    gap: 5px;
+  }
+}
