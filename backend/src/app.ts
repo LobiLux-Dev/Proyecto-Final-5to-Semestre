@@ -1,3 +1,4 @@
+import cors from 'cors'
 import morgan from 'morgan'
 import express from 'express'
 
@@ -8,6 +9,7 @@ const app = express()
 // Middlewares
 app.use(morgan('dev'))
 app.use(express.json())
+app.use(cors({ origin: 'http://localhost:3000' }))
 
 // Routes
 app.use('/api/books', booksRoutes)
