@@ -6,6 +6,13 @@ div.container#books-container {
 
 div.container#books-container > div.card {
   width: 20rem;
+  height: 30rem;
+}
+
+div.container#books-container > div.card:hover {
+  cursor: pointer;
+  background: #ebeef3;
+  border-radius: 0.375rem;
 }
 
 div.container#books-container > div.card > div.card-header > img {
@@ -17,6 +24,17 @@ div.container#books-container > div.card > div.card-header > img {
 
 div.container#books-container > div.card > div.card-body > div.card-title.h5 {
   font-weight: 700;
+}
+
+div.container#books-container > div.card:last-child > div.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.container#books-container > div.card:last-child > div.card-body > svg {
+  width: 25%;
+  height: 25%;
 }
 
 div.container#books-container > div.card > div.card-footer > div.row > p.card-text {

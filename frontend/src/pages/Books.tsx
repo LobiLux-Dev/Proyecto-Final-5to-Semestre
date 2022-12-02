@@ -2,6 +2,7 @@ import axios from 'axios'
 import '../styles/pages/Books.css'
 import { useEffect, useState } from 'react'
 import { Card, Container, Row } from 'react-bootstrap'
+import { BsPlusLg } from 'react-icons/bs'
 
 const Books = () => {
   const [books, setBooks] = useState([])
@@ -41,6 +42,11 @@ const Books = () => {
           </Card.Footer>
         </Card>
       ))}
+      <Card>
+        <Card.Body>
+          <BsPlusLg />
+        </Card.Body>
+      </Card>
     </Container>
   )
 }
