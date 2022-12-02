@@ -1,8 +1,7 @@
 import express from 'express'
+import { PORT } from './config'
 
 const app = express()
-
-const PORT = 3001
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
