@@ -31,11 +31,13 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const { isbn, author, title, editorial, printingDate, quantity } = req.body
+    const { isbn, author, title, description, editorial, printingDate, quantity } =
+      req.body
 
     if (!isbn) throw new Error('ISBN is required')
     if (!author) throw new Error('Author is required')
     if (!title) throw new Error('Title is required')
+    if (!description) throw new Error('Description is required')
     if (!editorial) throw new Error('Editorial is required')
     if (!printingDate) throw new Error('Printing Date is required')
     if (!quantity && quantity !== 0) throw new Error('Quantity is required')
@@ -45,7 +47,15 @@ router.post('/', async (req, res, next) => {
     if (await getBook({ isbn })) throw new Error('ISBN already exists')
     if (await getBook({ title })) throw new Error('Title already exists')
 
-    await addBook({ isbn, author, title, editorial, printingDate, quantity })
+    await addBook({
+      isbn,
+      author,
+      title,
+      description,
+      editorial,
+      printingDate,
+      quantity,
+    })
     res.json({ status: 'Book saved' })
   } catch (error: any) {
     next(error.message)
@@ -54,13 +64,15 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const { isbn, author, title, editorial, printingDate, quantity } = req.body
+    const { isbn, author, title, description, editorial, printingDate, quantity } =
+      req.body
 
     if (!parseInt(req.params.id)) throw new Error('Invalid ID')
 
     if (!isbn) throw new Error('ISBN is required')
     if (!author) throw new Error('Author is required')
     if (!title) throw new Error('Title is required')
+    if (!description) throw new Error('Description is required')
     if (!editorial) throw new Error('Editorial is required')
     if (!printingDate) throw new Error('Printing Date is required')
     if (!quantity && quantity !== 0) throw new Error('Quantity is required')
@@ -76,6 +88,7 @@ router.put('/:id', async (req, res, next) => {
       isbn,
       author,
       title,
+      description,
       editorial,
       printingDate,
       quantity,

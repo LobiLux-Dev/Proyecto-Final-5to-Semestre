@@ -4,6 +4,7 @@ type BookType = {
   isbn: string
   author: string
   title: string
+  description: string
   editorial: string
   printingDate: Date
   quantity: number
@@ -21,22 +22,23 @@ export const addBook = async ({
   isbn,
   author,
   title,
+  description,
   editorial,
   printingDate,
   quantity,
 }: BookType) => {
   await Book.create(
-    { isbn, author, title, editorial, printingDate, quantity },
+    { isbn, author, title, description, editorial, printingDate, quantity },
     { logging: false }
   )
 }
 
 export const updateBook = async (
   id: string,
-  { isbn, author, title, editorial, printingDate, quantity }: BookType
+  { isbn, author, title, description, editorial, printingDate, quantity }: BookType
 ) => {
   await Book.update(
-    { isbn, author, title, editorial, printingDate, quantity },
+    { isbn, author, title, description, editorial, printingDate, quantity },
     { where: { id: id }, logging: false }
   )
 }

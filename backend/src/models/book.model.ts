@@ -21,6 +21,10 @@ const Book = sequelize.define(
       type: DataTypes.STRING(47),
       allowNull: false,
     },
+    description: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
     editorial: {
       type: DataTypes.STRING(47),
       allowNull: false,
