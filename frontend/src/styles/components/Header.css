@@ -9,7 +9,7 @@ header > nav.navbar.navbar-expand-sm.navbar-light {
 
 header > nav.navbar.navbar-expand-sm.navbar-light > div.container {
   background: #20232a;
-  z-index: 9999;
+  z-index: 1;
 }
 
 header
